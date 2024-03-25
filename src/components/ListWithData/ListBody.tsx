@@ -1,20 +1,20 @@
-import { DataType } from '../../screens/MainPage';
-import { ListItem } from './ListItem';
+import { DataType } from "../../screens/MainPage";
+import { ListItem } from "./ListItem";
 
 type ListBodyProps = {
-	data: DataType | DataType[];
+  data: DataType | DataType[];
 };
 
 export const ListBody = ({ data }: ListBodyProps) => {
-	return (
-		<tbody>
-			{Array.isArray(data) ? (
-				data.map((data, i) => (
-					<ListItem key={`${data.id}-${data.name}-${i}`} data={data} />
-				))
-			) : (
-				<ListItem data={data} />
-			)}
-		</tbody>
-	);
+  return (
+    <tbody>
+      {Array.isArray(data) ? (
+        data.map((data, i) => (
+          <ListItem key={`${data.id}-${data.name}-${i}`} data={data} />
+        ))
+      ) : (
+        <ListItem data={data} />
+      )}
+    </tbody>
+  );
 };
