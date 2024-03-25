@@ -46,10 +46,6 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         // that filtering and pagination should be performed within the API, not on the frontend side
         // so if i could not change the response i decided to short displaying results to 5 items per page
         if (data.length > numberOfItemsToDisplayPerPage) {
-          console.log(
-            "data.length - numberOfItemsToDisplayPerPage",
-            data.length - numberOfItemsToDisplayPerPage
-          );
           data.splice(-(data.length - numberOfItemsToDisplayPerPage));
         }
         setItems(data);
