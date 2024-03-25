@@ -77,7 +77,7 @@ export const SearchBar = ({ onSearch, page, searchId }: SearchBarProps) => {
             Clear
           </Button>
         </Link>
-      </>{" "}
+      </>
     </Box>
   );
 };
