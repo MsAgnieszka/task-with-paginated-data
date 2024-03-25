@@ -21,16 +21,30 @@ export const MainPage = () => {
   const pageFromUrl = query.get("page");
   const idFromUrl = query.get("id");
 
-  console.log("pageFromUrl", pageFromUrl);
-  console.log("idFromUrl", idFromUrl);
   const { getDataFromApi, items, totalPages, currentPage, setCurrentPage } =
     useDataFromApi();
   const [localCurrentPage, setLocalCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    setLocalCurrentPage(currentPage);
-    getDataFromApi();
-  }, [currentPage, getDataFromApi]);
+    if (pageFromUrl) {
+      setCurrentPage(+pageFromUrl);
+      getDataFromApi();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (idFromUrl) {
+      pageFromUrl && setCurrentPage(+pageFromUrl);
+      getDataFromApi(+idFromUrl);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!idFromUrl || !pageFromUrl) {
+      setLocalCurrentPage(currentPage);
+      getDataFromApi();
+    }
+  }, [currentPage, getDataFromApi, idFromUrl, pageFromUrl]);
 
   const handleChange = (event: ChangeEvent<unknown>, value: number) => {
     setLocalCurrentPage(value);
@@ -40,7 +54,11 @@ export const MainPage = () => {
 
   return (
     <Stack className="App-header" spacing={3}>
-      <SearchBar onSearch={getDataFromApi} page={localCurrentPage} />
+      <SearchBar
+        onSearch={getDataFromApi}
+        page={localCurrentPage}
+        searchId={idFromUrl ? +idFromUrl : undefined}
+      />
       <ListWithData data={items} />
       <Pagination
         count={totalPages}
