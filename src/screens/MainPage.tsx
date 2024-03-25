@@ -48,7 +48,7 @@ export const MainPage = () => {
   return (
     <Stack className="App-header" spacing={3}>
       <SearchBar
-        page={localCurrentPage}
+        page={pageFromUrl ? +pageFromUrl : localCurrentPage}
         searchId={idFromUrl ? +idFromUrl : undefined}
       />
       <ListWithData />
