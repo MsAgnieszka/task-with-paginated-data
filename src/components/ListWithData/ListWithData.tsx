@@ -1,14 +1,15 @@
-import { ListWithDataProps } from "../../utils/types";
+import { useDataContext } from "../../contexts/DataContext";
 import { ListBody } from "./ListBody";
 import { ListHeader } from "./ListHeader";
 
-export const ListWithData = ({ data }: ListWithDataProps) => {
+export const ListWithData = () => {
+  const { items } = useDataContext();
   return (
     <div className="displayDataContainer" style={{ fontSize: 24 }}>
-      {data ? (
+      {!!items ? (
         <table>
           <ListHeader />
-          <ListBody data={data} />
+          <ListBody />
         </table>
       ) : (
         <text>No results</text>

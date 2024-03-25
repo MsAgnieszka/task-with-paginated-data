@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { DataType } from "../../utils/types";
 import { ModalWithDetails } from "../ModalWithDetails";
+import { DataType } from "../../utils/types";
 
-type Props = { data: DataType };
+type Props = { item: DataType };
 
-export const ListItem = ({ data }: Props) => {
-  const { color, id, name, year } = data;
+export const ListItem = ({ item }: Props) => {
+  const { color, id, name, year } = item;
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const handleOpen = () => {
@@ -28,7 +28,7 @@ export const ListItem = ({ data }: Props) => {
         <td style={tdStyle}>{year}</td>
       </tr>
       <ModalWithDetails
-        data={data}
+        data={item}
         openModal={openModal}
         handleClose={handleClose}
       />

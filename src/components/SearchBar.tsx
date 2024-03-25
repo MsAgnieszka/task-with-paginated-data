@@ -1,30 +1,29 @@
 import { Box, Button, TextField } from "@mui/material";
 import { ChangeEvent, useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDataFromApi } from "../hooks/useDataFromApi";
+import { useDataContext } from "../contexts/DataContext";
 
 type SearchBarProps = {
-  onSearch: (id?: number) => Promise<void>;
   page?: number;
   searchId?: number;
 };
 
-export const SearchBar = ({ onSearch, page, searchId }: SearchBarProps) => {
+export const SearchBar = ({ page, searchId }: SearchBarProps) => {
   const navigate = useNavigate();
-  const { currentPage } = useDataFromApi();
+  const { currentPage, getDataFromApi } = useDataContext();
   const [inputContent, setInputContent] = useState<string>(
     searchId ? `${searchId}` : ""
   );
 
   const handleSearch = useCallback(
-    () => onSearch(+inputContent),
-    [inputContent, onSearch]
+    () => getDataFromApi(+inputContent),
+    [inputContent, getDataFromApi]
   );
 
   const handleClear = useCallback(() => {
     setInputContent("");
-    onSearch().then(() => navigate(`/?page=${page}`));
-  }, [navigate, onSearch, page]);
+    getDataFromApi().then(() => navigate(`/?page=${page}`));
+  }, [navigate, getDataFromApi, page]);
 
   const changeHandler = ({
     target: { value },

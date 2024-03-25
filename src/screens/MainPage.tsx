@@ -1,9 +1,9 @@
+import { Pagination, Stack } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ListWithData } from "../components/ListWithData/ListWithData";
 import { SearchBar } from "../components/SearchBar";
-import { useDataFromApi } from "../hooks/useDataFromApi";
-import { Pagination, Stack } from "@mui/material";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useDataContext } from "../contexts/DataContext";
 
 const useQuery = () => new URLSearchParams(useLocation().search);
 
@@ -13,8 +13,9 @@ export const MainPage = () => {
   const pageFromUrl = query.get("page");
   const idFromUrl = query.get("id");
 
-  const { getDataFromApi, items, totalPages, currentPage, setCurrentPage } =
-    useDataFromApi();
+  const { currentPage, getDataFromApi, items, setCurrentPage, totalPages } =
+    useDataContext();
+
   const [localCurrentPage, setLocalCurrentPage] = useState<number>(1);
 
   useEffect(() => {
@@ -47,11 +48,10 @@ export const MainPage = () => {
   return (
     <Stack className="App-header" spacing={3}>
       <SearchBar
-        onSearch={getDataFromApi}
         page={localCurrentPage}
         searchId={idFromUrl ? +idFromUrl : undefined}
       />
-      <ListWithData data={items} />
+      <ListWithData />
       <Pagination
         count={totalPages}
         variant="outlined"
