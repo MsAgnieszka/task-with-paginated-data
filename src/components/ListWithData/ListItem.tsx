@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DataType } from "../../screens/MainPage";
+import { DataType } from "../../utils/types";
 import { ModalWithDetails } from "../ModalWithDetails";
 
 type Props = { data: DataType };

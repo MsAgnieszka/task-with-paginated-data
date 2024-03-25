@@ -1,11 +1,7 @@
-import { DataType } from "../../screens/MainPage";
+import { ListWithDataProps } from "../../utils/types";
 import { ListItem } from "./ListItem";
 
-type ListBodyProps = {
-  data: DataType | DataType[];
-};
-
-export const ListBody = ({ data }: ListBodyProps) => {
+export const ListBody = ({ data }: ListWithDataProps) => {
   return (
     <tbody>
       {Array.isArray(data) ? (

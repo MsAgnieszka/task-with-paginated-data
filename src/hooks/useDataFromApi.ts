@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { DataType } from "../screens/MainPage";
+
 import { DATA_URL, numberOfItemsToDisplayPerPage } from "../utils/constants";
+import { DataTypes } from "../utils/types";
 
 export const useDataFromApi = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>();
-  const [items, setItems] = useState<DataType | DataType[]>([]);
+  const [items, setItems] = useState<DataTypes>([]);
 
   const getDataFromApi = useCallback(
     async (id?: number) => {

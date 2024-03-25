@@ -1,15 +1,13 @@
 import { Box, Button, Modal } from "@mui/material";
-import { DataType } from "../screens/MainPage";
+import { DataType } from "../utils/types";
 
-export const ModalWithDetails = ({
-  data,
-  openModal,
-  handleClose,
-}: {
+type Props = {
   data: DataType;
   openModal: boolean;
   handleClose: () => void;
-}) => {
+};
+
+export const ModalWithDetails = ({ data, openModal, handleClose }: Props) => {
   const { color, id, name, year, pantone_value } = data;
 
   const details = [

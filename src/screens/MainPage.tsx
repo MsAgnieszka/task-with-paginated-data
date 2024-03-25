@@ -7,14 +7,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const useQuery = () => new URLSearchParams(useLocation().search);
 
-export type DataType = {
-  id: number;
-  name: string;
-  year: number;
-  color: string;
-  pantone_value?: string;
-};
-
 export const MainPage = () => {
   const navigate = useNavigate();
   const query = useQuery();
