@@ -1,5 +1,9 @@
 # task-with-paginated-data
-Get paginated data, display, filter by id, handle pagination and display item details.
+Task requirements:
+Get paginated data, display 5 item per page on table, each item has background color from data from API, filtering by id, handle pagination and display item details on modal. Filtering and pagination was performed within the API, not on the frontend side.
+There is also possibility to copy-paste web browser URL to another tab, where this exact page (with filtering if id filtered) displays on the start.
+
+In task i use `react-router-dom` and data state is managed by `useContext`. 
 
 # Getting Started with Create React App
 
